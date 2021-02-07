@@ -13,6 +13,8 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cliente implements Serializable{
 
@@ -25,7 +27,8 @@ public class Cliente implements Serializable{
 	private String email;
 	@CPF(message = "CPF inválido")
 	private String cpf;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
