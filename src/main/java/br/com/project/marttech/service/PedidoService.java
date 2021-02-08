@@ -43,4 +43,9 @@ public class PedidoService {
 	public Pedido findByIdOrThrowBadRequestException(Long id) {
 		return pedidoRepository.findById(id).orElseThrow(() -> new BadRequestException("Cliente não encontrado"));
 	}
+
+	public void delete(Long id) {
+		pedidoRepository.deleteById(id);
+		
+	}
 }

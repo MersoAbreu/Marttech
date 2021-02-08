@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,11 +29,11 @@ public class Produto implements Serializable {
 
 	private String nome;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "id.produto")
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id.produto")
 	private Set<ItemPedido> item = new HashSet<>();
 
-
+	
 	public Produto() {
 
 	}
@@ -75,7 +76,7 @@ public class Produto implements Serializable {
 		}
 		return lista;
 	}
-
+	@JsonBackReference
 	public Set<ItemPedido> getItem() {
 		return item;
 	}

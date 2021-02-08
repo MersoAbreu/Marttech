@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Cliente implements Serializable{
 	private String cpf;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
 	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Cliente() {
@@ -100,7 +101,7 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
-
+	
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}

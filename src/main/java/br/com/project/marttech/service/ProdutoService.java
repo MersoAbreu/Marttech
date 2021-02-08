@@ -34,4 +34,9 @@ public class ProdutoService {
 		Optional<Produto> prod = produtoRepository.findById(id);
 		return prod.orElseThrow(()-> new BadRequestException("Não encontrado "+Produto.class.getName()));
 	}
+
+	public void delete(Long id) {
+		produtoRepository.deleteById(id);
+		
+	}
 }
