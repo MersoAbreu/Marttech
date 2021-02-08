@@ -14,9 +14,13 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+
+
 
 	
 	public Cliente create(Cliente cliente) {
+		cliente.setId(null);
 		Cliente cli = clienteRepository.save(cliente);
 		return cli;
 	}
@@ -39,6 +43,19 @@ public class ClienteService {
 			.orElseThrow(()-> new BadRequestException("Cliente não encontrado"));
 	}
 	
-	
+	public List<Cliente>getAll() {
+		List<Cliente> cli = clienteRepository.findAll();
+		return cli;
+	}
+
+	public void delete(long id) {
+		clienteRepository.deleteById(id);
+		
+	}
+	public void update(Cliente cliente) {
+		find(cliente.getId());
+		clienteRepository.save(cliente);
+		
+	}
 
 }
